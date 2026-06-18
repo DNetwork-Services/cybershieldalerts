@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Category } from '@/types';
 
 interface CategoryFilterProps {
@@ -16,8 +15,8 @@ export default function CategoryFilter({ categories, activeCategory, onChange }:
         onClick={() => onChange('all')}
         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
           activeCategory === 'all'
-            ? 'bg-cyber-cyan text-cyber-black'
-            : 'bg-cyber-gray/50 text-gray-400 hover:text-white hover:bg-cyber-gray'
+            ? 'bg-cyber-cyan text-cyber-black shadow-lg shadow-cyber-cyan/20'
+            : 'bg-cyber-gray/50 text-gray-400 hover:text-white hover:bg-cyber-gray/80'
         }`}
       >
         All
@@ -28,12 +27,12 @@ export default function CategoryFilter({ categories, activeCategory, onChange }:
           onClick={() => onChange(category.slug)}
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
             activeCategory === category.slug
-              ? 'bg-cyber-cyan text-cyber-black'
-              : 'bg-cyber-gray/50 text-gray-400 hover:text-white hover:bg-cyber-gray'
+              ? 'bg-cyber-cyan text-cyber-black shadow-lg shadow-cyber-cyan/20'
+              : 'bg-cyber-gray/50 text-gray-400 hover:text-white hover:bg-cyber-gray/80'
           }`}
         >
           {category.name}
-          <span className="ml-1 text-xs opacity-70">({category.count})</span>
+          <span className="ml-1.5 text-xs opacity-70">({category.count})</span>
         </button>
       ))}
     </div>

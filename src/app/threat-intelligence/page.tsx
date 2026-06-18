@@ -11,15 +11,16 @@ export default function ThreatIntelligencePage() {
   const articles = getAllArticles();
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-28 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
             Threat <span className="text-purple-400">Intelligence</span>
           </h1>
-          <p className="text-lg text-gray-400">
+          <p className="text-lg text-gray-400 max-w-2xl">
             Advanced threat analysis and intelligence reports.
           </p>
+          <div className="section-divider mt-4" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

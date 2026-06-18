@@ -29,78 +29,86 @@
 }
 
 @layer components {
-  .cyber-card {
+  .hb-card {
     @apply bg-cyber-dark/80 backdrop-blur-sm border border-cyber-gray/30 rounded-xl p-6 
-           hover:border-cyber-cyan/30 transition-all duration-300
-           hover:shadow-[0_0_30px_rgba(0,245,255,0.05)];
+           hover:border-cyber-cyan/30 transition-all duration-300;
   }
 
-  .cyber-card-glow {
-    @apply cyber-card;
-    box-shadow: 0 0 0 0 rgba(0, 245, 255, 0);
-    transition: all 0.3s;
+  .hb-card-hover {
+    @apply hb-card;
   }
 
-  .cyber-card-glow:hover {
-    box-shadow: 0 0 30px rgba(0, 245, 255, 0.08), inset 0 0 30px rgba(0, 245, 255, 0.02);
-    @apply border-cyber-cyan/30;
+  .hb-card-hover:hover {
+    @apply border-cyber-cyan/40;
+    box-shadow: 0 8px 32px rgba(0, 245, 255, 0.06);
   }
 
-  .cyber-button {
-    @apply px-6 py-3 font-semibold rounded-lg transition-all duration-300 active:scale-95 relative overflow-hidden;
+  .hb-button {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg 
+           transition-all duration-300 active:scale-[0.98] relative overflow-hidden;
     background: linear-gradient(135deg, #00f5ff, #00cccc);
     @apply text-cyber-black;
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 245, 255, 0.25);
   }
 
-  .cyber-button:hover {
-    box-shadow: 0 0 40px rgba(0, 245, 255, 0.5);
+  .hb-button:hover {
+    box-shadow: 0 6px 24px rgba(0, 245, 255, 0.4);
     transform: translateY(-1px);
   }
 
-  .cyber-button::after {
-    content: '';
-    @apply absolute inset-0;
-    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
+  .hb-button-ghost {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg 
+           border border-cyber-cyan/40 text-cyber-cyan 
+           hover:bg-cyber-cyan/10 hover:border-cyber-cyan transition-all duration-300
+           active:scale-[0.98];
   }
 
-  .cyber-button:hover::after {
-    transform: translateX(100%);
+  .hb-badge {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium
+           bg-cyber-cyan/10 border border-cyber-cyan/20 text-cyber-cyan;
   }
 
-  .cyber-button-outline {
-    @apply px-6 py-3 border font-semibold rounded-lg transition-all duration-300;
-    @apply border-cyber-cyan/50 text-cyber-cyan;
-    @apply hover:bg-cyber-cyan/10 hover:border-cyber-cyan hover:shadow-[0_0_20px_rgba(0,245,255,0.2)];
-  }
-
-  .cyber-input {
+  .hb-input {
     @apply w-full px-4 py-3 bg-cyber-dark/80 border border-cyber-gray/30 rounded-lg
-           text-white placeholder-gray-500 transition-all duration-300;
+           text-white placeholder-gray-500 transition-all duration-300
+           focus:outline-none focus:border-cyber-cyan/50 focus:shadow-[0_0_16px_rgba(0,245,255,0.08)];
   }
 
-  .cyber-input:focus {
-    @apply outline-none border-cyber-cyan/50;
-    box-shadow: 0 0 15px rgba(0, 245, 255, 0.1);
+  .hb-section-title {
+    @apply text-2xl md:text-3xl font-display font-bold text-white;
   }
 
-  .gradient-text {
+  .hb-gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, #00f5ff, #00ff88, #00f5ff);
     background-size: 200% auto;
     animation: shimmer 3s linear infinite;
   }
 
-  .glass-effect {
-    @apply bg-cyber-dark/80 backdrop-blur-xl border border-cyber-gray/30;
+  .hb-glass {
+    @apply bg-cyber-dark/70 backdrop-blur-xl border border-white/10;
   }
 
-  .cyber-badge {
-    @apply px-3 py-1 text-xs font-medium rounded-full;
-    background: rgba(0, 245, 255, 0.1);
-    @apply text-cyber-cyan border border-cyber-cyan/20;
+  .hb-glass-card {
+    @apply relative overflow-hidden rounded-xl;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 245, 255, 0.05) 0%,
+      rgba(0, 255, 136, 0.03) 50%,
+      rgba(0, 245, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .hb-glass-card::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: radial-gradient(
+      800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(0, 245, 255, 0.03) 0%,
+      transparent 60%
+    );
   }
 
   .prose-cyber {
@@ -108,12 +116,12 @@
            prose-a:text-cyber-cyan prose-a:no-underline hover:prose-a:underline
            prose-strong:text-white prose-code:text-cyber-green prose-pre:bg-cyber-dark prose-pre:border prose-pre:border-cyber-gray/30
            prose-blockquote:border-cyber-cyan/30 prose-blockquote:text-gray-400 prose-blockquote:bg-cyber-cyan/5 prose-blockquote:rounded-lg prose-blockquote:py-1 prose-blockquote:px-4
-           prose-li:text-gray-400 prose-img:rounded-xl prose-img:border prose-img:border-cyber-gray/30;
+           prose-li:text-gray-400 prose-img:rounded-xl prose-img:border prose-img:border-cyber-gray/30
+           prose-h2:text-xl prose-h3:text-lg;
   }
 
-  .section-title {
-    @apply text-2xl md:text-3xl font-display font-bold text-white;
-    text-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+  .section-divider {
+    @apply w-12 h-0.5 rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-green;
   }
 
   .animate-fade-in {
@@ -122,6 +130,10 @@
 
   .animate-slide-up {
     animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
   }
 }
 
@@ -154,12 +166,16 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 5px rgba(0, 245, 255, 0.3); }
   50% { box-shadow: 0 0 15px rgba(0, 245, 255, 0.6); }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -177,7 +193,6 @@
   background: #2a2a3e;
 }
 
-/* Reading progress bar */
 .reading-progress {
   position: fixed;
   top: 0;
@@ -188,12 +203,10 @@
   transition: width 0.1s ease-out;
 }
 
-/* TOC active state */
 .toc-active {
   @apply text-cyber-cyan;
 }
 
-/* Article content styling */
 .article-content h2 {
   @apply text-xl font-display font-bold text-white mt-8 mb-4 pb-2 border-b border-cyber-gray/30;
 }
