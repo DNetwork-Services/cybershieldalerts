@@ -11,19 +11,16 @@ export default function Footer() {
         <div className="py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-4">
-              <Link href="/" className="flex items-center gap-2.5 mb-4">
-                <div className="relative w-9 h-9">
+              <Link href="/" className="flex items-center mb-4">
+                <div className="relative w-14 h-14">
                   <Image
                     src="/logo.png"
                     alt="CyberShield Alerts"
                     fill
                     className="object-contain"
-                    sizes="36px"
+                    sizes="56px"
                   />
                 </div>
-                <span className="text-lg font-display font-bold text-white tracking-tight">
-                  CYBER<span className="text-cyber-cyan">SHIELD</span>
-                </span>
               </Link>
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                 {SITE_DESCRIPTION}. Your trusted source for daily threat intelligence and security insights.

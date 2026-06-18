@@ -29,19 +29,17 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-18">
-          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="relative w-9 h-9">
+          <Link href="/" className="flex items-center shrink-0">
+            <div className="relative w-12 h-12 md:w-14 md:h-14">
               <Image
                 src="/logo.png"
                 alt="CyberShield Alerts"
                 fill
                 className="object-contain"
-                sizes="36px"
+                sizes="56px"
+                priority
               />
             </div>
-            <span className="text-lg md:text-xl font-display font-bold text-white tracking-tight">
-              CYBER<span className="text-cyber-cyan">SHIELD</span>
-            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
