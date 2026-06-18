@@ -175,19 +175,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 lg:gap-12">
             <aside className="hidden lg:block">
-              <TableOfContents content={article.content} />
+              <div className="sticky top-24">
+                <TableOfContents content={article.content} />
+              </div>
             </aside>
 
-            <div className="lg:col-span-3 max-w-4xl">
+            <div className="min-w-0 max-w-3xl">
               <div className="lg:hidden mb-8">
                 <TableOfContents content={article.content} />
               </div>
 
               <div
-                className="prose-cyber max-w-none"
+                className="prose-cyber prose-lg max-w-none"
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
               />
 

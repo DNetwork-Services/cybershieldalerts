@@ -112,12 +112,27 @@
   }
 
   .prose-cyber {
-    @apply prose prose-invert prose-headings:text-white prose-p:text-gray-400 
+    @apply prose prose-invert 
+           prose-headings:text-white prose-headings:leading-snug prose-headings:tracking-tight
+           prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-5
            prose-a:text-cyber-cyan prose-a:no-underline hover:prose-a:underline
-           prose-strong:text-white prose-code:text-cyber-green prose-pre:bg-cyber-dark prose-pre:border prose-pre:border-cyber-gray/30
-           prose-blockquote:border-cyber-cyan/30 prose-blockquote:text-gray-400 prose-blockquote:bg-cyber-cyan/5 prose-blockquote:rounded-lg prose-blockquote:py-1 prose-blockquote:px-4
-           prose-li:text-gray-400 prose-img:rounded-xl prose-img:border prose-img:border-cyber-gray/30
-           prose-h2:text-xl prose-h3:text-lg;
+           prose-strong:text-white prose-strong:font-semibold
+           prose-code:text-cyber-green prose-pre:bg-cyber-dark prose-pre:border prose-pre:border-cyber-gray/30
+           prose-blockquote:border-l-2 prose-blockquote:border-cyber-cyan/30 
+           prose-blockquote:text-gray-300 prose-blockquote:bg-cyber-cyan/5 
+           prose-blockquote:rounded-r-lg prose-blockquote:py-2 prose-blockquote:px-5
+           prose-li:text-gray-300 prose-li:leading-relaxed prose-li:mb-1.5
+           prose-img:rounded-xl prose-img:border prose-img:border-cyber-gray/20
+           prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4
+           prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3;
+  }
+
+  .prose-cyber ul {
+    @apply space-y-1;
+  }
+
+  .prose-cyber ol {
+    @apply space-y-1;
   }
 
   .section-divider {
