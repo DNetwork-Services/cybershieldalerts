@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { NAV_ITEMS } from '@/lib/constants';
 
 export default function Header() {
@@ -29,11 +30,14 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-18">
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-cyber-cyan to-cyber-green flex items-center justify-center relative">
-              <svg className="w-5 h-5 text-cyber-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-cyber-cyan to-cyber-green opacity-40 blur-sm group-hover:opacity-70 transition-opacity" />
+            <div className="relative w-9 h-9">
+              <Image
+                src="/logo.png"
+                alt="CyberShield Alerts"
+                fill
+                className="object-contain"
+                sizes="36px"
+              />
             </div>
             <span className="text-lg md:text-xl font-display font-bold text-white tracking-tight">
               CYBER<span className="text-cyber-cyan">SHIELD</span>
