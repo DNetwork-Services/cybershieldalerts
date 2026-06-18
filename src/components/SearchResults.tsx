@@ -1,8 +1,8 @@
-import { Article } from '@/types';
-import ArticleCard from './ArticleCard';
+import Link from 'next/link';
+import { SearchArticle } from '@/lib/search-client';
 
 interface SearchResultsProps {
-  results: Article[];
+  results: SearchArticle[];
   query: string;
 }
 
@@ -30,7 +30,34 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {results.map((article) => (
-          <ArticleCard key={article.slug} article={article} />
+          <Link
+            key={article.slug}
+            href={`/article/${article.slug}`}
+            className="group block h-full"
+          >
+            <article className="hb-card-hover h-full flex flex-col">
+              <div className="flex flex-col flex-1 p-4">
+                <div className="flex items-center gap-2 text-[11px] font-mono text-gray-500 mb-2">
+                  <span>{article.date}</span>
+                  <span className="w-1 h-1 rounded-full bg-gray-600" />
+                  <span>{article.readingTime}</span>
+                </div>
+                <h3 className="font-display font-bold text-white group-hover:text-cyber-cyan transition-colors line-clamp-2 leading-snug text-base">
+                  {article.title}
+                </h3>
+                {article.description && (
+                  <p className="text-gray-500 mt-2 line-clamp-2 flex-1 text-sm leading-relaxed">
+                    {article.description}
+                  </p>
+                )}
+                <div className="flex items-center gap-2 mt-3 pt-3 border-t border-cyber-gray/20">
+                  <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-medium rounded bg-cyber-cyan/10 text-cyber-cyan">
+                    {article.category}
+                  </span>
+                </div>
+              </div>
+            </article>
+          </Link>
         ))}
       </div>
     </div>

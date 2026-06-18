@@ -1,16 +1,30 @@
 'use client';
 
-import { useState } from 'react';
-import { Article } from '@/types';
+import { useState, useEffect } from 'react';
 import SearchResults from '@/components/SearchResults';
+import { SearchArticle, searchArticlesLocal } from '@/lib/search-client';
 
-interface SearchPageClientProps {
-  initialQuery: string;
-}
+export default function SearchPageClient() {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<SearchArticle[]>([]);
+  const [articles, setArticles] = useState<SearchArticle[]>([]);
+  const [loaded, setLoaded] = useState(false);
 
-export default function SearchPageClient({ initialQuery }: SearchPageClientProps) {
-  const [query, setQuery] = useState(initialQuery);
-  const [results, setResults] = useState<Article[]>([]);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    if (q) setQuery(q);
+
+    fetch('/articles-data.json')
+      .then(res => res.json())
+      .then(data => {
+        setArticles(data);
+        setLoaded(true);
+        if (q) {
+          setResults(searchArticlesLocal(data, q));
+        }
+      });
+  }, []);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,6 +32,12 @@ export default function SearchPageClient({ initialQuery }: SearchPageClientProps
     const q = formData.get('q') as string;
     setQuery(q);
     window.history.pushState({}, '', `/search?q=${encodeURIComponent(q)}`);
+
+    if (q.trim() && loaded) {
+      setResults(searchArticlesLocal(articles, q));
+    } else {
+      setResults([]);
+    }
   };
 
   return (
@@ -37,7 +57,6 @@ export default function SearchPageClient({ initialQuery }: SearchPageClientProps
               defaultValue={query}
               placeholder="Search articles..."
               className="hb-input flex-1"
-              autoFocus
             />
             <button type="submit" className="hb-button">
               Search

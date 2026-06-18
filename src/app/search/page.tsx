@@ -6,12 +6,6 @@ export const metadata: Metadata = {
   description: 'Search CyberShield Alerts articles.',
 };
 
-export default function SearchPage({
-  searchParams,
-}: {
-  searchParams: { q?: string };
-}) {
-  const query = searchParams.q || '';
-
-  return <SearchPageClient initialQuery={query} />;
+export default function SearchPage() {
+  return <SearchPageClient />;
 }
