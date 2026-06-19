@@ -6,7 +6,11 @@ export const revalidate = 0;
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  const vercelCronHeader = request.headers.get('x-vercel-cron');
+  
+  const isValidCron = vercelCronHeader === '1' || authHeader === `Bearer ${process.env.CRON_SECRET}`;
+  
+  if (!isValidCron) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
