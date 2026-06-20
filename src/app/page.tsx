@@ -11,15 +11,6 @@ export default function HomePage() {
   const aiArticles = latestArticles.filter(a => a.category === 'AI News').slice(0, 3);
   const hackArticles = latestArticles.filter(a => a.category === 'Hacking News').slice(0, 3);
 
-  const categories = [
-    { name: 'News', href: '/news', color: 'from-blue-500 to-cyan-500', icon: 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z' },
-    { name: 'AI News', href: '/ai-news', color: 'from-emerald-500 to-teal-500', icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
-    { name: 'Cybersecurity', href: '/cybersecurity', color: 'from-cyan-500 to-blue-600', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
-    { name: 'Hacking', href: '/hacking-news', color: 'from-red-500 to-rose-600', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
-    { name: 'Threat Intel', href: '/threat-intelligence', color: 'from-purple-500 to-indigo-600', icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' },
-    { name: 'Data Breaches', href: '/data-breaches', color: 'from-orange-500 to-red-500', icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z' },
-  ];
-
   return (
     <div className="min-h-screen">
       <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28">
@@ -184,33 +175,6 @@ export default function HomePage() {
           </div>
         </section>
       )}
-
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="hb-section-title">Browse by Category</h2>
-            <div className="section-divider mx-auto mt-2" />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map((category) => (
-              <Link
-                key={category.href}
-                href={category.href}
-                className="group hb-card-hover text-center"
-              >
-                <div className={`w-12 h-12 mx-auto rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d={category.icon} />
-                  </svg>
-                </div>
-                <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
-                  {category.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-cyber-cyan/10 via-cyber-green/5 to-cyber-purple/10" />

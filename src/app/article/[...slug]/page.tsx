@@ -183,7 +183,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </div>
             </aside>
 
-            <div className="min-w-0 max-w-3xl">
+            <div className="min-w-0 max-w-3xl mx-auto">
               <div className="lg:hidden mb-8">
                 <TableOfContents content={article.content} />
               </div>
