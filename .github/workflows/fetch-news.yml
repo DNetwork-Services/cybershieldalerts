@@ -2,43 +2,43 @@ name: Fetch Latest News
 
 on:
   schedule:
-    - cron: '0 6 * * *'   # 06:00 UTC daily (11:30 AM IST)
-  workflow_dispatch:        # lets you trigger it manually from the Actions tab
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   fetch-news:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Fetch latest RSS articles
-        run: node scripts/fetch-rss.mjs
+      - run: npm ci
+      - run: node scripts/fetch-rss.mjs
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
 
-      - name: Commit and push new articles
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: automated news update"
+          title: "chore: daily news update"
+          body: "Automated daily news fetch from RSS feeds."
+          branch: auto/news-update
+          delete-branch: true
 
-          if [ -n "$(git status --porcelain content/)" ]; then
-            git add content/
-            git commit -m "chore: automated news update $(date -u +'%Y-%m-%d')"
-            git push origin HEAD:main
-          else
-            echo "No new articles found — nothing to commit."
-          fi
+      - name: Enable auto-merge
+        if: steps.cpr.outputs.pull-request-number
+        run: gh pr merge --auto --squash "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
