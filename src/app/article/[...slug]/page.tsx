@@ -112,7 +112,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
 
       <article className="pt-28 pb-16">
-        <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <header className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
           <nav className="flex items-center gap-2 text-sm text-gray-500 mb-4" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-cyber-cyan transition-colors">Home</Link>
             <span className="text-gray-600">/</span>
@@ -257,7 +257,7 @@ function PrevNextNav({ currentSlug }: { currentSlug: string }) {
 
   return (
     <section className="py-12 border-t border-cyber-gray/20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {prev && (
             <Link href={`/article/${prev.slug}`} className="hb-card-hover group text-left">
