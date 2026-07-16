@@ -1,0 +1,15 @@
+---
+title: "Cursor Flaw Lets Malicious Cloned Repositories Trigger Windows Code Execution"
+date: "2026-07-15"
+category: "Hacking News"
+tags: ["cybersecurity", "news"]
+author: "CyberShield Team"
+readingTime: "1 min read"
+description: "Open a repository in Cursor on Windows and, if a file named git.exe is sitting in the project root, Cursor runs it. No click, no approval dialog, no warning that anything in the folder is about to exe"
+coverImage: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyFnrtjbcXdDBTEYOhVnUpFO4CSqhCGj5xdvaYlhih4oUCd3phzBQTjjMogZeFDlYqTiO8Xt2jaHevba5peaV76dT417Vq9W-DZFSpu2_cEbAMtGwz-mqKZJcYgAAXmZT_Rnkdc0f3jAW-eANKWd6XZZJvYfYCt6l5Pp-2ZKjlnn4zG7G6gS7ivWruzeU/s1600/git.png"
+featured: false
+---
+
+Open a repository in Cursor on Windows and, if a file named git.exe is sitting in the project root, Cursor runs it. No click, no approval dialog, no warning that anything in the folder is about to execute. Whatever that binary does, it does as you, with your source, your SSH keys and your cloud tokens. Cursor keeps re-running it for as long as the project stays open. No prompt
+
+
